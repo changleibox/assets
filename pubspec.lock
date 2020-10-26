@@ -177,7 +177,7 @@ packages:
     source: hosted
     version: "1.9.3"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       url: "https://pub.flutter-io.cn"
@@ -253,6 +253,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.7.0"
+  sprintf:
+    dependency: "direct main"
+    description:
+      name: sprintf
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "5.0.0"
   stack_trace:
     dependency: transitive
     description:
