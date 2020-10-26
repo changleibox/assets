@@ -4,10 +4,10 @@ import 'package:assets/template.dart';
 import 'package:path/path.dart' as path;
 import 'package:sprintf/sprintf.dart';
 
-void resolve() {
+void resolve([List<String> ignores]) {
   assert(File(path.join('pubspec.yaml')).existsSync(), '请在项目更目录执行');
 
-  final fileMap = resolveFileMap();
+  final fileMap = resolveFileMap(ignores);
   if (fileMap == null) {
     print('assets资源文件夹不存在');
     return;
@@ -29,6 +29,8 @@ void resolveAssets(Map<String, List<String>> fileMap) {
   final openWrite = assetsFile.openWrite();
   openWrite.flush();
 
+  openWrite.writeln(generatorTips);
+  openWrite.writeln(pluginHeader);
   final directoryPaths = fileMap.keys;
   // 创建Assets提供者
   openWrite.writeln(sprintf(assetsClassTemplate, [
@@ -66,7 +68,7 @@ void resolveAssets(Map<String, List<String>> fileMap) {
   openWrite.close();
 }
 
-Map<String, List<String>> resolveFileMap() {
+Map<String, List<String>> resolveFileMap([List<String> ignores]) {
   final directory = Directory('assets');
   if (!directory.existsSync()) {
     return null;
@@ -77,7 +79,8 @@ Map<String, List<String>> resolveFileMap() {
   final fileMap = <String, List<String>>{};
   for (var entity in entities) {
     final entityPath = entity.path;
-    if (entity is Directory) {
+    final entityName = path.basename(entityPath);
+    if (entity is Directory && (ignores == null || !ignores.contains(entityName))) {
       final files = fileMap[entityPath] ??= <String>[];
       final subEntities = entity.listSync();
       var subDirectories = subEntities.whereType<Directory>();

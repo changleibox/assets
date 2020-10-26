@@ -1,3 +1,14 @@
+const generatorTips = '''
+// GENERATED CODE - DO NOT MODIFY BY HAND
+''';
+
+const pluginHeader = '''
+// **************************************************************************
+// Generator: Flutter Assets IDE plugin
+// Made by Changlei
+// **************************************************************************
+''';
+
 const assetsClassTemplate = '''
 class Assets {
 %s
