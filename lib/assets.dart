@@ -43,7 +43,7 @@ void resolveAssets(Map<String, List<String>> fileMap) {
   openWrite.writeln();
 
   // 创建Assets抽象类
-  openWrite.writeln(assetsAbstrctClassTemplate.trim());
+  openWrite.writeln(assetsAbstractClassTemplate.trim());
   openWrite.writeln();
 
   final assetsSubClasses = <String>[];

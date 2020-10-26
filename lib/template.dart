@@ -21,7 +21,7 @@ const assetsMethodTemplate = '''
   }
 ''';
 
-const assetsAbstrctClassTemplate = '''
+const assetsAbstractClassTemplate = '''
 class _Assets {
   _Assets._({this.prefix});
 
