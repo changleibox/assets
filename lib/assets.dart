@@ -8,6 +8,10 @@ void resolve() {
   assert(File(path.join('pubspec.yaml')).existsSync(), '请在项目更目录执行');
 
   final fileMap = resolveFileMap();
+  if (fileMap == null) {
+    print('assets资源文件夹不存在');
+    return;
+  }
   if (fileMap == null || fileMap.isEmpty) {
     print('assets资源文件夹是空的');
     return;
@@ -65,7 +69,6 @@ void resolveAssets(Map<String, List<String>> fileMap) {
 Map<String, List<String>> resolveFileMap() {
   final directory = Directory('assets');
   if (!directory.existsSync()) {
-    print('assets资源文件夹不存在');
     return null;
   }
   final entities = directory.listSync(
