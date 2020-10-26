@@ -9,11 +9,11 @@ void resolve([List<String> ignores]) {
 
   final fileMap = resolveFileMap(ignores);
   if (fileMap == null) {
-    print('assets资源文件夹不存在');
+    stdout.writeln('assets资源文件夹不存在');
     return;
   }
   if (fileMap == null || fileMap.isEmpty) {
-    print('assets资源文件夹是空的');
+    stdout.writeln('assets资源文件夹是空的');
     return;
   }
 
@@ -73,6 +73,9 @@ Map<String, List<String>> resolveFileMap([List<String> ignores]) {
   if (!directory.existsSync()) {
     return null;
   }
+  if (ignores != null && ignores.isNotEmpty) {
+    stdout.writeln('忽略目录：[${ignores.join(',')}]');
+  }
   final entities = directory.listSync(
     followLinks: false,
   );
@@ -85,7 +88,7 @@ Map<String, List<String>> resolveFileMap([List<String> ignores]) {
       final subEntities = entity.listSync();
       var subDirectories = subEntities.whereType<Directory>();
       if (subDirectories.isNotEmpty) {
-        print('忽略以下子文件夹：\n${subDirectories.map((e) => '  ${e.path}').join('\n')}');
+        stdout.writeln('忽略以下子目录：\n${subDirectories.map((e) => '  ${e.path}').join('\n')}');
       }
       files.addAll(subEntities.whereType<File>().map((e) => e.path));
     }
