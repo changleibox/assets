@@ -10,12 +10,14 @@ const pluginHeader = '''
 ''';
 
 const assetsClassTemplate = '''
+// ignore: public_member_api_docs
 class Assets {
 %s
 }
 ''';
 
 const assetsMethodTemplate = '''
+  // ignore: public_member_api_docs
   static String %s(String fileName) {
     return %s._(prefix: _Assets.instance.path).resolveFrom(fileName);
   }
@@ -55,6 +57,7 @@ class _Assets {
 ''';
 
 const assetsSubClassTemplate = '''
+// ignore: public_member_api_docs
 class %s extends _Assets {
   %s._({String prefix}) : super._(prefix: prefix);
 
@@ -66,5 +69,6 @@ class %s extends _Assets {
 ''';
 
 const assetsFieldTemplate = '''
+  // ignore: public_member_api_docs
   static const String %s = '%s';
 ''';
