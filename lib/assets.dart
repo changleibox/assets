@@ -61,7 +61,7 @@ void resolveAssets(Map<String, List<String>> fileMap) {
       return sprintf(assetsFieldTemplate, [fileNameWithoutExtension, fileName]).trimRight();
     });
     assetsSubClasses.add(
-      sprintf(assetsSubClassTemplate, [className, className, fieldNames.join('\n'), dirname]).trim(),
+      sprintf(assetsSubClassTemplate, [className, className, fieldNames.join('\n\n'), dirname]).trim(),
     );
   }
   openWrite.writeln(assetsSubClasses.join('\n\n').trim());
