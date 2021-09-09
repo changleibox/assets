@@ -12,6 +12,8 @@ const pluginHeader = '''
 const assetsClassTemplate = '''
 // ignore: public_member_api_docs
 class Assets {
+  const Assets._();
+  
 %s
 }
 ''';
