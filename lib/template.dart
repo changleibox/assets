@@ -29,22 +29,22 @@ const assetsAbstractClassTemplate = '''
 class _Assets {
   _Assets._({this.prefix});
 
-  final String prefix;
+  final String? prefix;
 
   static _Assets get instance => _getInstance();
-  static _Assets _instance;
+  static _Assets? _instance;
 
   static _Assets _getInstance() {
     _instance ??= _Assets._();
-    return _instance;
+    return _instance!;
   }
 
   String get catalog => 'assets';
 
   String get path {
     final paths = <String>[];
-    if (prefix != null && prefix.isNotEmpty) {
-      paths.add(prefix);
+    if (prefix != null && prefix!.isNotEmpty) {
+      paths.add(prefix!);
     }
     paths.add(catalog);
     return paths.join('/');
@@ -61,7 +61,7 @@ class _Assets {
 const assetsSubClassTemplate = '''
 // ignore: public_member_api_docs
 class %s extends _Assets {
-  %s._({String prefix}) : super._(prefix: prefix);
+  %s._({String? prefix}) : super._(prefix: prefix);
 
 %s
 
